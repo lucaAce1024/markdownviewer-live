@@ -1,0 +1,77 @@
+{
+  "en": {
+    "title": "Markdown Viewer - Online Markdown Editor & Live Preview Tool",
+    "description": "Free online Markdown viewer with live preview, GitHub-style rendering, LaTeX math, Mermaid diagrams, syntax highlighting, dark mode, and export to PDF, HTML & MD.",
+    "keywords": "online markdown viewer, Markdown Editor, Online Markdown, Markdown Preview, GitHub-style markdown, live preview, markdown to HTML, LaTeX support, Mermaid diagrams, PDF export, syntax highlighting, markdown renderer, markdown tool"
+  },
+  "zh": {
+    "title": "Markdown 查看器 - 在线 Markdown 编辑器和实时预览工具",
+    "description": "免费的在线 Markdown 查看器，支持实时预览、GitHub 风格渲染、LaTeX 数学公式、Mermaid 图表、语法高亮、深色模式，以及导出为 PDF、HTML 和 MD。",
+    "keywords": "在线 Markdown 查看器, Markdown 编辑器, 在线 Markdown, Markdown 预览, GitHub 风格 Markdown, 实时预览, Markdown 转 HTML, LaTeX 支持, Mermaid 图表, PDF 导出, 语法高亮, Markdown 渲染器, Markdown 工具"
+  },
+  "zh-TW": {
+    "title": "Markdown 檢視器 - 線上 Markdown 編輯器與即時預覽工具",
+    "description": "免費線上 Markdown 檢視器，支援即時預覽、GitHub 風格渲染、LaTeX 數學公式、Mermaid 圖表、語法高亮、深色模式，以及匯出為 PDF、HTML 和 MD。",
+    "keywords": "線上 Markdown 檢視器, Markdown 編輯器, 線上 Markdown, Markdown 預覽, GitHub 風格 Markdown, 即時預覽, Markdown 轉 HTML, LaTeX 支援, Mermaid 圖表, PDF 匯出, 語法高亮, Markdown 渲染器, Markdown 工具"
+  },
+  "ja": {
+    "title": "Markdown ビューア - オンライン Markdown エディタとライブプレビューツール",
+    "description": "無料のオンライン Markdown ビューア。ライブプレビュー、GitHub スタイルレンダリング、LaTeX 数式、Mermaid 図表、シンタックスハイライト、ダークモード、PDF・HTML・MD エクスポートに対応。",
+    "keywords": "オンライン Markdown ビューア, Markdown エディタ, オンライン Markdown, Markdown プレビュー, GitHub スタイル Markdown, ライブプレビュー, Markdown から HTML, LaTeX サポート, Mermaid 図表, PDF エクスポート, シンタックスハイライト, Markdown レンダラー, Markdown ツール"
+  },
+  "ko": {
+    "title": "Markdown 뷰어 - 온라인 Markdown 편집기 및 실시간 미리보기 도구",
+    "description": "무료 온라인 Markdown 뷰어. 실시간 미리보기, GitHub 스타일 렌더링, LaTeX 수학, Mermaid 다이어그램, 구문 강조, 다크 모드, PDF·HTML·MD 내보내기를 지원합니다.",
+    "keywords": "온라인 Markdown 뷰어, Markdown 편집기, 온라인 Markdown, Markdown 미리보기, GitHub 스타일 Markdown, 실시간 미리보기, Markdown에서 HTML, LaTeX 지원, Mermaid 다이어그램, PDF 내보내기, 구문 강조, Markdown 렌더러, Markdown 도구"
+  },
+  "ru": {
+    "title": "Markdown Viewer - Онлайн-редактор Markdown с предпросмотром в реальном времени",
+    "description": "Бесплатный онлайн-просмотрщик Markdown с предпросмотром в реальном времени, рендерингом в стиле GitHub, математикой LaTeX, диаграммами Mermaid, подсветкой синтаксиса, тёмным режимом и экспортом в PDF, HTML и MD.",
+    "keywords": "онлайн просмотрщик Markdown, Редактор Markdown, Онлайн Markdown, Предпросмотр Markdown, Markdown в стиле GitHub, предпросмотр в реальном времени, Markdown в HTML, Поддержка LaTeX, Диаграммы Mermaid, Экспорт PDF, Подсветка синтаксиса, Рендерер Markdown, Инструмент Markdown"
+  },
+  "fr": {
+    "title": "Markdown Viewer - Éditeur Markdown en ligne et outil de prévisualisation en direct",
+    "description": "Visionneuse Markdown en ligne gratuite avec prévisualisation en direct, rendu de style GitHub, mathématiques LaTeX, diagrammes Mermaid, coloration syntaxique, mode sombre et export en PDF, HTML et MD.",
+    "keywords": "visionneuse Markdown en ligne, Éditeur Markdown, Markdown en ligne, Prévisualisation Markdown, Markdown style GitHub, prévisualisation en direct, Markdown vers HTML, Support LaTeX, Diagrammes Mermaid, Export PDF, Coloration syntaxique, Rendu Markdown, Outil Markdown"
+  },
+  "es": {
+    "title": "Markdown Viewer - Editor Markdown en línea y herramienta de vista previa en vivo",
+    "description": "Visor Markdown en línea gratuito con vista previa en vivo, renderizado estilo GitHub, matemáticas LaTeX, diagramas Mermaid, resaltado de sintaxis, modo oscuro y exportación a PDF, HTML y MD.",
+    "keywords": "visor Markdown en línea, Editor Markdown, Markdown en línea, Vista previa Markdown, Markdown estilo GitHub, vista previa en vivo, Markdown a HTML, Soporte LaTeX, Diagramas Mermaid, Exportar PDF, Resaltado de sintaxis, Renderizador Markdown, Herramienta Markdown"
+  },
+  "de": {
+    "title": "Markdown Viewer - Online Markdown-Editor & Live-Vorschau-Tool",
+    "description": "Kostenloser Online-Markdown-Viewer mit Live-Vorschau, GitHub-Stil-Rendering, LaTeX-Mathematik, Mermaid-Diagrammen, Syntaxhervorhebung, Dunkelmodus und Export als PDF, HTML & MD.",
+    "keywords": "Online-Markdown-Viewer, Markdown-Editor, Online Markdown, Markdown-Vorschau, GitHub-Stil Markdown, Live-Vorschau, Markdown zu HTML, LaTeX-Unterstützung, Mermaid-Diagramme, PDF-Export, Syntaxhervorhebung, Markdown-Renderer, Markdown-Tool"
+  },
+  "it": {
+    "title": "Markdown Viewer - Editor Markdown online e strumento di anteprima dal vivo",
+    "description": "Visualizzatore Markdown online gratuito con anteprima dal vivo, rendering in stile GitHub, matematica LaTeX, diagrammi Mermaid, evidenziazione della sintassi, modalità scura ed esportazione in PDF, HTML e MD.",
+    "keywords": "visualizzatore Markdown online, Editor Markdown, Markdown online, Anteprima Markdown, Markdown stile GitHub, anteprima dal vivo, Markdown in HTML, Supporto LaTeX, Diagrammi Mermaid, Esportazione PDF, Evidenziazione sintassi, Renderer Markdown, Strumento Markdown"
+  },
+  "pt": {
+    "title": "Markdown Viewer - Editor Markdown online e ferramenta de pré-visualização em direto",
+    "description": "Visualizador Markdown online gratuito com pré-visualização em direto, renderização estilo GitHub, matemática LaTeX, diagramas Mermaid, destaque de sintaxe, modo escuro e exportação para PDF, HTML e MD.",
+    "keywords": "visualizador Markdown online, Editor Markdown, Markdown online, Pré-visualização Markdown, Markdown estilo GitHub, pré-visualização em direto, Markdown para HTML, Suporte LaTeX, Diagramas Mermaid, Exportar PDF, Destaque de sintaxe, Renderizador Markdown, Ferramenta Markdown"
+  },
+  "nl": {
+    "title": "Markdown Viewer - Online Markdown-editor & Live-voorbeeld-tool",
+    "description": "Gratis online Markdown-viewer met live voorbeeld, GitHub-stijl rendering, LaTeX-wiskunde, Mermaid-diagrammen, syntaxismarkering, donkere modus en export naar PDF, HTML en MD.",
+    "keywords": "online Markdown-viewer, Markdown-editor, Online Markdown, Markdown-voorbeeld, GitHub-stijl Markdown, live voorbeeld, Markdown naar HTML, LaTeX-ondersteuning, Mermaid-diagrammen, PDF-export, Syntaxismarkering, Markdown-renderer, Markdown-tool"
+  },
+  "pl": {
+    "title": "Markdown Viewer - Edytor Markdown online i narzędzie podglądu na żywo",
+    "description": "Darmowa przeglądarka Markdown online z podglądem na żywo, renderowaniem w stylu GitHub, matematyką LaTeX, diagramami Mermaid, podświetlaniem składni, trybem ciemnym i eksportem do PDF, HTML i MD.",
+    "keywords": "online przeglądarka Markdown, Edytor Markdown, Markdown online, Podgląd Markdown, Markdown w stylu GitHub, podgląd na żywo, Markdown do HTML, Obsługa LaTeX, Diagramy Mermaid, Eksport PDF, Podświetlanie składni, Renderer Markdown, Narzędzie Markdown"
+  },
+  "sv": {
+    "title": "Markdown Viewer - Online Markdown-redigerare & Live-förhandsgranskningsverktyg",
+    "description": "Gratis online Markdown-visare med liveförhandsgranskning, GitHub-stil rendering, LaTeX-matematik, Mermaid-diagram, syntaxmarkering, mörkt läge och export till PDF, HTML och MD.",
+    "keywords": "online Markdown-visare, Markdown-redigerare, Online Markdown, Markdown-förhandsgranskning, GitHub-stil Markdown, liveförhandsgranskning, Markdown till HTML, LaTeX-stöd, Mermaid-diagram, PDF-export, Syntaxmarkering, Markdown-renderare, Markdown-verktyg"
+  },
+  "ar": {
+    "title": "عارض Markdown - محرر Markdown عبر الإنترنت وأداة معاينة مباشرة",
+    "description": "عارض Markdown مجاني عبر الإنترنت مع معاينة مباشرة وعرض بأسلوب GitHub ورياضيات LaTeX ومخططات Mermaid وتلوين بناء الجملة والوضع الداكن والتصدير إلى PDF وHTML وMD.",
+    "keywords": "عارض Markdown عبر الإنترنت, محرر Markdown, Markdown عبر الإنترنت, معاينة Markdown, Markdown بأسلوب GitHub, معاينة مباشرة, Markdown إلى HTML, دعم LaTeX, مخططات Mermaid, تصدير PDF, تلوين بناء الجملة, عارض Markdown, أداة Markdown"
+  }
+}

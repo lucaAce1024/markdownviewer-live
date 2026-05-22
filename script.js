@@ -5480,4 +5480,169 @@ This is a fully client-side application. Your content never leaves your browser 
       container.appendChild(toolbar);
     });
   }
+
+  // ========================================
+  // I18N INITIALIZATION
+  // ========================================
+  if (window.I18n) {
+    I18n.init().then(function () {
+      // Translate sample markdown templates after i18n loads
+      if (I18n.getCurrentLang() !== 'en') {
+        updateSampleMarkdownForLang();
+      }
+    });
+
+    // Listen for language changes
+    window.addEventListener('languageChanged', function (e) {
+      updateSampleMarkdownForLang();
+    });
+  }
+
+  // ========================================
+  // UPLOAD ZONE HANDLERS
+  // ========================================
+  var uploadZone = document.getElementById('upload-zone');
+  var uploadZoneBtn = document.getElementById('upload-zone-btn');
+  var uploadZoneInput = document.getElementById('upload-zone-input');
+
+  if (uploadZone && uploadZoneBtn && uploadZoneInput) {
+    // Click upload button -> trigger file input
+    uploadZoneBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      uploadZoneInput.click();
+    });
+
+    // Click zone area (not button) -> also trigger file input
+    uploadZone.addEventListener('click', function (e) {
+      if (e.target !== uploadZoneBtn) {
+        uploadZoneInput.click();
+      }
+    });
+
+    // File selected from upload zone
+    uploadZoneInput.addEventListener('change', function () {
+      if (this.files && this.files[0]) {
+        handleUploadedFile(this.files[0]);
+        this.value = ''; // reset
+      }
+    });
+
+    // Drag & drop on upload zone
+    uploadZone.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      uploadZone.classList.add('drag-over');
+    });
+
+    uploadZone.addEventListener('dragleave', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      uploadZone.classList.remove('drag-over');
+    });
+
+    uploadZone.addEventListener('drop', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      uploadZone.classList.remove('drag-over');
+
+      var files = e.dataTransfer.files;
+      if (files && files[0]) {
+        handleUploadedFile(files[0]);
+      }
+    });
+  }
+
+  function handleUploadedFile(file) {
+    var validExts = ['.md', '.markdown'];
+    var name = file.name.toLowerCase();
+    var isValid = validExts.some(function (ext) { return name.endsWith(ext); })
+      || file.type === 'text/markdown'
+      || file.type === 'text/x-markdown';
+
+    if (!isValid) {
+      alert(I18n ? I18n.t('Please upload a .md or .markdown file') : 'Please upload a .md or .markdown file');
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.onload = function (evt) {
+      var content = evt.target.result;
+      editor.value = content;
+      // Set tab name to file name
+      var tabName = file.name.replace(/\.(md|markdown)$/i, '');
+      tabs[activeTabId].name = tabName;
+      renderTabBar();
+      updatePreview(content);
+      // Hide upload zone after file loaded
+      if (uploadZone) uploadZone.style.display = 'none';
+    };
+    reader.readAsText(file);
+  }
+
+  // Show upload zone when editor is empty (optional UX)
+  function checkShowUploadZone() {
+    if (!uploadZone) return;
+    var content = editor.value.trim();
+    if (!content && tabs[activeTabId].name === 'Untitled') {
+      uploadZone.style.display = 'flex';
+    } else {
+      uploadZone.style.display = 'none';
+    }
+  }
+
+  // Hide upload zone when user starts typing
+  editor.addEventListener('input', function () {
+    if (uploadZone && editor.value.trim()) {
+      uploadZone.style.display = 'none';
+    }
+  });
+
+  // Initial check
+  checkShowUploadZone();
+
+  // ========================================
+  // MULTILINGUAL SAMPLE MARKDOWN
+  // ========================================
+  var sampleMarkdownCache = {};
+
+  function getLocalizedSampleMarkdown(lang) {
+    if (sampleMarkdownCache[lang]) return sampleMarkdownCache[lang];
+
+    var samples = {
+      en: sampleMarkdown,
+      zh: `# 欢迎使用 Markdown Viewer\n\n> 一个强大的在线 Markdown 查看器和编辑器，支持实时预览。\n\n## ✨ 功能特性\n\n- 📝 **实时预览** — 编辑即所见\n- 🌙 **深色模式** — 保护眼睛\n- 📊 **Mermaid 图表** — 流程图、序列图等\n- 📐 **数学公式** — 支持 LaTeX 语法\n- 📤 **多格式导出** — PDF、HTML、Markdown\n- 🔄 **同步滚动** — 编辑器与预览同步\n\n## 📊 Mermaid 流程图\n\n\`\`\`mermaid\ngraph LR\n    A[Markdown 文本] --> B[解析器]\n    B --> C[HTML 渲染]\n    C --> D[实时预览]\n\`\`\`\n\n## 📐 数学公式\n\n行内公式：$E = mc^2$\n\n块级公式：\n\n$$\\n\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}\n$$\n\n## 📋 代码示例\n\n\`\`\`javascript\nfunction hello() {\n  console.log("你好，世界！");\n}\n\`\`\`\n\n## 📊 数据表格\n\n| 功能 | 状态 | 说明 |\n|------|------|------|\n| 实时预览 | ✅ | 即时渲染 |\n| 深色模式 | ✅ | 自动切换 |\n| 导出 PDF | ✅ | 一键导出 |\n| Mermaid | ✅ | 图表支持 |\n\n---\n\n**开始编辑吧！** 点击左上角输入内容，右侧即时预览效果。 🚀`,
+      ja: `# Markdown Viewer へようこそ\n\n> リアルタイムプレビュー付きの強力なオンライン Markdown ビューアー＆エディター。\n\n## ✨ 機能\n\n- 📝 **リアルタイムプレビュー** — 編集と同時に表示\n- 🌙 **ダークモード** — 目に優しい\n- 📊 **Mermaid ダイアグラム** — フローチャート、シーケンス図など\n- 📐 **数式** — LaTeX 構文サポート\n- 📤 **マルチフォーマットエクスポート** — PDF、HTML、Markdown\n\n## 📊 Mermaid フローチャート\n\n\`\`\`mermaid\ngraph LR\n    A[Markdown テキスト] --> B[パーサー]\n    B --> C[HTML レンダリング]\n    C --> D[リアルタイムプレビュー]\n\`\`\`\n\n## 📐 数式\n\nインライン：$E = mc^2$\n\nブロック：\n\n$$\\n\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}\n$$\n\n## 💻 コード例\n\n\`\`\`javascript\nfunction hello() {\n  console.log("こんにちは、世界！");\n}\n\`\`\`\n\n---\n\n**編集を始めましょう！** 左側に入力すると、右側にリアルタイムでプレビューが表示されます。 🚀`,
+      ko: `# Markdown Viewer에 오신 것을 환영합니다\n\n> 실시간 미리보기가 지원되는 강력한 온라인 Markdown 뷰어 및 편집기.\n\n## ✨ 기능\n\n- 📝 **실시간 미리보기** — 편집 즉시 표시\n- 🌙 **다크 모드** — 눈 보호\n- 📊 **Mermaid 다이어그램** — 순서도, 시퀀스 다이어그램 등\n- 📐 **수식** — LaTeX 구문 지원\n- 📤 **다중 형식 내보내기** — PDF, HTML, Markdown\n\n## 📊 Mermaid 순서도\n\n\`\`\`mermaid\ngraph LR\n    A[Markdown 텍스트] --> B[파서]\n    B --> C[HTML 렌더링]\n    C --> D[실시간 미리보기]\n\`\`\`\n\n## 📐 수식\n\n인라인: $E = mc^2$\n\n블록:\n\n$$\\n\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}\n$$\n\n---\n\n**편집을 시작하세요!** 왼쪽에 입력하면 오른쪽에 실시간 미리보기가 표시됩니다. 🚀`,
+      fr: `# Bienvenue dans Markdown Viewer\n\n> Un puissant visualiseur et éditeur Markdown en ligne avec aperçu en direct.\n\n## ✨ Fonctionnalités\n\n- 📝 **Aperçu en direct** — Éditez et voyez le résultat instantanément\n- 🌙 **Mode sombre** — Confortable pour les yeux\n- 📊 **Diagrammes Mermaid** — Organigrammes, diagrammes de séquence\n- 📐 **Formules mathématiques** — Support LaTeX\n- 📤 **Export multi-format** — PDF, HTML, Markdown\n\n## 📊 Diagramme Mermaid\n\n\`\`\`mermaid\ngraph LR\n    A[Texte Markdown] --> B[Analyseur]\n    B --> C[Rendu HTML]\n    C --> D[Aperçu en direct]\n\`\`\`\n\n---\n\n**Commencez à éditer !** Saisissez votre contenu à gauche, l'aperçu s'affiche à droite. 🚀`,
+      es: `# Bienvenido a Markdown Viewer\n\n> Un potente visor y editor Markdown en línea con vista previa en directo.\n\n## ✨ Características\n\n- 📝 **Vista previa en directo** — Edita y ve el resultado al instante\n- 🌙 **Modo oscuro** — Cómodo para los ojos\n- 📊 **Diagramas Mermaid** — Diagramas de flujo, secuencias, etc.\n- 📐 **Fórmulas matemáticas** — Soporte LaTeX\n- 📤 **Exportación multi-formato** — PDF, HTML, Markdown\n\n## 📊 Diagrama de flujo Mermaid\n\n\`\`\`mermaid\ngraph LR\n    A[Texto Markdown] --> B[Analizador]\n    B --> C[Renderizado HTML]\n    C --> D[Vista previa en directo]\n\`\`\`\n\n---\n\n**¡Empieza a editar!** Escribe tu contenido a la izquierda, la vista previa aparece a la derecha. 🚀`,
+      de: `# Willkommen bei Markdown Viewer\n\n> Ein leistungsstarker Online-Markdown-Viewer und -Editor mit Live-Vorschau.\n\n## ✨ Funktionen\n\n- 📝 **Live-Vorschau** — Bearbeiten und sofort sehen\n- 🌙 **Dunkelmodus** — Augenschonend\n- 📊 **Mermaid-Diagramme** — Flussdiagramme, Sequenzdiagramme usw.\n- 📐 **Mathematische Formeln** — LaTeX-Unterstützung\n- 📤 **Multi-Format-Export** — PDF, HTML, Markdown\n\n---\n\n**Legen Sie los!** Geben Sie links Ihren Inhalt ein, die Vorschau erscheint rechts. 🚀`,
+      it: `# Benvenuto in Markdown Viewer\n\n> Un potente visualizzatore ed editor Markdown online con anteprima dal vivo.\n\n## ✨ Funzionalità\n\n- 📝 **Anteprima dal vivo** — Modifica e visualizza instantaneamente\n- 🌙 **Modalità scura** — Riposo per gli occhi\n- 📊 **Diagrammi Mermaid** — Diagrammi di flusso, sequenze, ecc.\n- 📐 **Formule matematiche** — Supporto LaTeX\n- 📤 **Esportazione multi-formato** — PDF, HTML, Markdown\n\n---\n\n**Inizia a modificare!** Inserisci il contenuto a sinistra, l'anteprima appare a destra. 🚀`,
+      pt: `# Bem-vindo ao Markdown Viewer\n\n> Um poderoso visualizador e editor Markdown online com visualização ao vivo.\n\n## ✨ Recursos\n\n- 📝 **Visualização ao vivo** — Edite e veja instantaneamente\n- 🌙 **Modo escuro** — Confortável para os olhos\n- 📊 **Diagramas Mermaid** — Fluxogramas, diagramas de sequência, etc.\n- 📐 **Fórmulas matemáticas** — Suporte LaTeX\n- 📤 **Exportação multi-formato** — PDF, HTML, Markdown\n\n---\n\n**Comece a editar!** Digite seu conteúdo à esquerda, a visualização aparece à direita. 🚀`,
+      nl: `# Welkom bij Markdown Viewer\n\n> Een krachtige online Markdown-viewer en -editor met live voorbeeld.\n\n## ✨ Functies\n\n- 📝 **Live voorbeeld** — Bewerk en zie direct het resultaat\n- 🌙 **Donkere modus** — Comfortabel voor de ogen\n- 📊 **Mermaid-diagrammen** — Stroomdiagrammen, sequentiediagrammen, enz.\n- 📐 **Wiskundige formules** — LaTeX-ondersteuning\n- 📤 **Multi-format export** — PDF, HTML, Markdown\n\n---\n\n**Begin met bewerken!** Voer uw inhoud links in, het voorbeeld verschijnt rechts. 🚀`,
+      pl: `# Witaj w Markdown Viewer\n\n> Potężna przeglądarka i edytor Markdown online z podglądem na żywo.\n\n## ✨ Funkcje\n\n- 📝 **Podgląd na żywo** — Edytuj i natychmiast widzisz wynik\n- 🌙 **Tryb ciemny** — Wygodny dla oczu\n- 📊 **Diagramy Mermaid** — Schematy blokowe, diagramy sekwencji itp.\n- 📐 **Formuły matematyczne** — Obsługa LaTeX\n- 📤 **Eksport wieloformatowy** — PDF, HTML, Markdown\n\n---\n\n**Zacznij edytować!** Wpisz treść po lewej stronie, podgląd pojawi się po prawej. 🚀`,
+      sv: `# Välkommen till Markdown Viewer\n\n> En kraftfull online Markdown-visare och redigerare med live-förhandsgranskning.\n\n## ✨ Funktioner\n\n- 📝 **Live-förhandsgranskning** — Redigera och se resultatet direkt\n- 🌙 **Mörkt läge** — Skonsamt för ögonen\n- 📊 **Mermaid-diagram** — Flödesscheman, sekvensdiagram osv.\n- 📐 **Matematiska formler** — LaTeX-stöd\n- 📤 **Multi-format export** — PDF, HTML, Markdown\n\n---\n\n**Börja redigera!** Skriv in ditt innehåll till vänster, förhandsgranskningen visas till höger. 🚀`,
+      ru: `# Добро пожаловать в Markdown Viewer\n\n> Мощный онлайн-просмотрщик и редактор Markdown с предпросмотром в реальном времени.\n\n## ✨ Возможности\n\n- 📝 **Предпросмотр в реальном времени** — Редактируйте и сразу видьте результат\n- 🌙 **Тёмный режим** — Комфорт для глаз\n- 📊 **Диаграммы Mermaid** — Блок-схемы, диаграммы последовательностей и др.\n- 📐 **Математические формулы** — Поддержка LaTeX\n- 📤 **Мультиформатный экспорт** — PDF, HTML, Markdown\n\n## 📊 Диаграмма Mermaid\n\n\`\`\`mermaid\ngraph LR\n    A[Текст Markdown] --> B[Парсер]\n    B --> C[Рендеринг HTML]\n    C --> D[Предпросмотр]\n\`\`\`\n\n---\n\n**Начните редактировать!** Введите содержимое слева, предпросмотр появится справа. 🚀`,
+      ar: `# مرحبًا بك في Markdown Viewer\n\n> عارض ومحرر Markdown قوي عبر الإنترنت مع معاينة مباشرة.\n\n## ✨ الميزات\n\n- 📝 **معاينة مباشرة** — حرر وشاهد النتيجة فورًا\n- 🌙 **الوضع الداكن** — مريح للعيون\n- 📊 **مخططات Mermaid** — مخططات انسيابية ومخططات تسلسل وما إلى ذلك\n- 📐 **الصيغ الرياضية** — دعم LaTeX\n- 📤 **تصدير متعدد التنسيقات** — PDF، HTML، Markdown\n\n---\n\n**ابدأ التحرير!** أدخل المحتوى على اليسار، ستظهر المعاينة على اليمين. 🚀`,
+      'zh-TW': `# 歡迎使用 Markdown Viewer\n\n> 一個強大的線上 Markdown 檢視器和編輯器，支援即時預覽。\n\n## ✨ 功能特色\n\n- 📝 **即時預覽** — 編輯即所見\n- 🌙 **深色模式** — 保護眼睛\n- 📊 **Mermaid 圖表** — 流程圖、序列圖等\n- 📐 **數學公式** — 支援 LaTeX 語法\n- 📤 **多格式匯出** — PDF、HTML、Markdown\n- 🔄 **同步捲動** — 編輯器與預覽同步\n\n## 📊 Mermaid 流程圖\n\n\`\`\`mermaid\ngraph LR\n    A[Markdown 文字] --> B[解析器]\n    B --> C[HTML 渲染]\n    C --> D[即時預覽]\n\`\`\`\n\n## 📐 數學公式\n\n行內公式：$E = mc^2$\n\n區塊公式：\n\n$$\\n\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}\n$$\n\n---\n\n**開始編輯吧！** 點擊左上角輸入內容，右側即時預覽效果。 🚀`,
+    };
+
+    var lang = lang || 'en';
+    sampleMarkdownCache[lang] = samples[lang] || samples['en'];
+    return sampleMarkdownCache[lang];
+  }
+
+  function updateSampleMarkdownForLang() {
+    if (!window.I18n) return;
+    var lang = I18n.getCurrentLang();
+    // Only update if the editor still has the default English sample or a localized version
+    var currentContent = editor.value.trim();
+    if (!currentContent || currentContent === sampleMarkdown.trim()) {
+      var localized = getLocalizedSampleMarkdown(lang);
+      editor.value = localized;
+      tabs[activeTabId].name = 'Untitled';
+      renderTabBar();
+      updatePreview(localized);
+    }
+  }
+
 });
