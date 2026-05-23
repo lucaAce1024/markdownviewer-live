@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Primary Meta Tags -->
     <meta name="title" content="Markdown Viewer - Online Markdown Editor & Live Preview Tool">
-    <meta name="description" content="Free online Markdown viewer with live preview, GitHub-style rendering, LaTeX math, Mermaid diagrams, syntax highlighting, dark mode, and export to PDF, HTML & MD. Fully client-side and secure.">
+    <meta name="description" content="Free online Markdown viewer with live preview, GitHub-style rendering, LaTeX math, Mermaid diagrams, syntax highlighting, and export to PDF, HTML & MD.">
     <meta name="keywords" content="Markdown Viewer, Markdown Editor, Online Markdown, Markdown Preview, GitHub-style markdown, live preview, markdown to HTML, LaTeX support, Mermaid diagrams, PDF export, syntax highlighting, markdown renderer, markdown tool">
     <meta name="author" content="MarkdownViewer.live">
     <meta name="robots" content="index, follow">
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://markdownviewer.live/">
     <meta property="og:title" content="Markdown Viewer - Online Markdown Editor & Live Preview Tool">
-    <meta property="og:description" content="Free online Markdown viewer with live preview, GitHub-style rendering, LaTeX math, Mermaid diagrams, syntax highlighting, dark mode, and export to PDF, HTML & MD.">
+    <meta property="og:description" content="Free online Markdown viewer with live preview, GitHub-style rendering, LaTeX math, Mermaid diagrams, syntax highlighting, and export to PDF, HTML & MD.">
     <meta property="og:image" content="https://markdownviewer.live/assets/icon.jpg">
 
     <!-- Twitter -->
@@ -150,11 +150,8 @@
             <div class="container-fluid d-flex justify-content-between align-items-center header-container">
                 <!-- Left section: Logo, GitHub, Stats -->
                 <div class="d-flex align-items-center header-left">
-                    <h1 class="h4 mb-0 me-2" data-i18n="Markdown Viewer">Markdown Viewer</h1>
-                    <a href="https://github.com/ThisIs-Developer/Markdown-Viewer/" class="github-link" title="View on GitHub" target="_blank" rel="noopener noreferrer">
-                        <i class="bi bi-github"></i>
-                    </a>
-                    <div id="stats-container" class="stats-container d-flex align-items-center d-none d-md-flex">
+                 <h1 class="h4 mb-0 me-2" data-i18n="Markdown Viewer">Markdown Viewer</h1>
+                     <div id="stats-container"class="stats-container d-flex align-items-center d-none d-md-flex">
                         <div class="stat-item me-3">
                             <i class="bi bi-clock me-1"></i> <span id="reading-time">0</span> <span data-i18n="Min Read">Min Read</span>
                         </div>
@@ -345,8 +342,8 @@
         <!-- Markdown Formatting Toolbar -->
         <div class="markdown-format-toolbar" id="markdown-format-toolbar" role="toolbar" aria-label="Markdown formatting toolbar">
           <div class="markdown-toolbar-group">
-            <button type="button" class="markdown-tool-btn" data-md-action="undo" title="Undo" aria-label="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
-            <button type="button" class="markdown-tool-btn" data-md-action="redo" title="Redo" aria-label="Redo"><i class="bi bi-arrow-clockwise"></i></button>
+            <button type="button" class="markdown-tool-btn undo-redo-btn" data-md-action="undo" title="Undo" aria-label="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
+            <button type="button" class="markdown-tool-btn undo-redo-btn" data-md-action="redo" title="Redo" aria-label="Redo"><i class="bi bi-arrow-clockwise"></i></button>
             <button type="button" class="markdown-tool-btn" data-md-action="clear-formatting" title="Clear Markdown formatting" aria-label="Clear Markdown formatting"><i class="bi bi-eraser"></i></button>
           </div>
           <div class="markdown-toolbar-group">

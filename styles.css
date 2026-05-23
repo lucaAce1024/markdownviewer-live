@@ -666,6 +666,38 @@ body {
   font-family: Georgia, "Times New Roman", serif;
 }
 
+/* === Undo/Redo Large Button === */
+.markdown-tool-btn.undo-redo-btn {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 10px;
+  background: var(--toolbar-btn-bg, #f0f2f5);
+  border: 2px solid var(--border-color, #d0d7de);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.markdown-tool-btn.undo-redo-btn i {
+  font-size: 20px;
+}
+
+.markdown-tool-btn.undo-redo-btn:hover {
+  background: var(--toolbar-btn-hover-bg, #e1e4e8);
+  border-color: var(--accent-color, #0969da);
+  transform: scale(1.08);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+.markdown-tool-btn.undo-redo-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+
 .heading-group .markdown-tool-btn {
   min-width: 30px;
 }
